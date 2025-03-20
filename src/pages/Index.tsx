@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useCallback } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { toast } from 'sonner';
@@ -34,34 +33,26 @@ import BlankSpaceSelector from '@/components/BlankSpaceSelector';
 import FileDropzone from '@/components/FileDropzone';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 
-// We need to add UUID as a dependency
 const Index = () => {
-  // Project state
   const [projectName, setProjectName] = useState<string>('Untitled Project');
   const [romType, setRomType] = useState<RomType>('27C256');
   const [fillType, setFillType] = useState<FillType>(0xFF);
   
-  // Segments state
   const [segments, setSegments] = useState<RomSegment[]>([]);
   const [selectedSegmentId, setSelectedSegmentId] = useState<string | null>(null);
   
-  // UI state
   const [showDropzone, setShowDropzone] = useState<boolean>(false);
   
-  // Get the currently selected segment
   const selectedSegment = segments.find(segment => segment.id === selectedSegmentId) || null;
   
-  // Handler for changing ROM type
   const handleRomTypeChange = (newType: RomType) => {
     setRomType(newType);
   };
   
-  // Handler for changing fill type
   const handleFillTypeChange = (newFillType: string) => {
     setFillType(Number(newFillType) as FillType);
   };
   
-  // Handler for adding ROM files
   const handleFilesSelected = async (files: File[]) => {
     setShowDropzone(false);
     
@@ -97,7 +88,6 @@ const Index = () => {
     }
   };
   
-  // Handler for adding blank space
   const handleAddBlankSpace = (size: number, fillPattern: FillType) => {
     const blankData = createBlankSegment(size, fillPattern);
     const sizeLabel = size >= 1024 ? `${size / 1024}KB` : `${size}B`;
@@ -116,12 +106,10 @@ const Index = () => {
     toast.success(`Added ${sizeLabel} blank space filled with ${fillPattern ? '0xFF' : '0x00'}`);
   };
   
-  // Handler for selecting a segment
   const handleSelectSegment = (id: string) => {
     setSelectedSegmentId(id);
   };
   
-  // Handler for removing a segment
   const handleRemoveSegment = (id: string) => {
     setSegments(prev => prev.filter(segment => segment.id !== id));
     
@@ -132,7 +120,6 @@ const Index = () => {
     toast.success('Segment removed');
   };
   
-  // Handler for moving segments up or down
   const handleMoveSegment = (id: string, direction: 'up' | 'down') => {
     setSegments(prev => {
       const index = prev.findIndex(segment => segment.id === id);
@@ -150,17 +137,14 @@ const Index = () => {
       const newSegments = [...prev];
       const segment = newSegments[index];
       
-      // Remove the segment from its current position
       newSegments.splice(index, 1);
       
-      // Insert it at the new position
       newSegments.splice(newIndex, 0, segment);
       
       return newSegments;
     });
   };
   
-  // Handler for exporting ROM files
   const handleExport = () => {
     try {
       const romSize = ROM_SIZES[romType];
@@ -171,7 +155,6 @@ const Index = () => {
         return newAcc;
       }, new Uint8Array(0));
       
-      // Calculate how many ROM files we need
       const romCount = Math.ceil(totalData.length / romSize);
       
       if (romCount === 0) {
@@ -179,7 +162,6 @@ const Index = () => {
         return;
       }
       
-      // If all data fits in one ROM
       if (romCount === 1) {
         const romFile = new Uint8Array(romSize);
         romFile.fill(fillType);
@@ -188,7 +170,6 @@ const Index = () => {
         downloadFile(romFile, `${projectName.replace(/\s+/g, '_')}.bin`);
         toast.success('ROM file exported successfully');
       } else {
-        // We need multiple ROM files
         for (let i = 0; i < romCount; i++) {
           const romFile = new Uint8Array(romSize);
           romFile.fill(fillType);
@@ -213,7 +194,6 @@ const Index = () => {
     }
   };
   
-  // Handler for saving the project
   const handleSaveProject = () => {
     try {
       const project: RomProject = {
@@ -242,7 +222,6 @@ const Index = () => {
     }
   };
   
-  // Handler for loading a project
   const handleLoadProject = useCallback(async (file: File) => {
     try {
       const text = await file.text();
@@ -266,7 +245,6 @@ const Index = () => {
     }
   }, []);
   
-  // Handler for selecting a project file to load
   const handleSelectProjectFile = () => {
     const input = document.createElement('input');
     input.type = 'file';
@@ -283,7 +261,6 @@ const Index = () => {
     input.click();
   };
   
-  // Handler for resetting the project
   const handleResetProject = () => {
     if (segments.length === 0) {
       return;
@@ -302,19 +279,19 @@ const Index = () => {
     }
   };
   
-  // Effect to update page title
   useEffect(() => {
-    document.title = `${projectName} - ROM Crafting Toolbox`;
+    document.title = `${projectName} - ROM Creator`;
   }, [projectName]);
   
   return (
     <div className="min-h-screen bg-background text-foreground animate-fade-in">
-      {/* App Header */}
       <header className="border-b border-border bg-card shadow-sm">
         <div className="container py-4 flex justify-between items-center">
           <div className="flex items-center gap-2">
             <div className="flex flex-col">
-              <h1 className="text-xl font-semibold tracking-tight">ROM Crafting Toolbox</h1>
+              <h1 className="text-xl font-semibold tracking-tight">
+                ROM Creator <a href="https://retrofixer.it" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">by Retrofixer</a>
+              </h1>
               <p className="text-sm text-muted-foreground">Create and manage ROM binary files</p>
             </div>
           </div>
@@ -336,12 +313,9 @@ const Index = () => {
         </div>
       </header>
       
-      {/* Main Content */}
       <main className="container py-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-          {/* Left Column - Project Settings and Segment List */}
           <div className="lg:col-span-4 space-y-6">
-            {/* Project Settings */}
             <div className="p-4 border rounded-md space-y-4 bg-card">
               <h2 className="font-semibold text-lg">Project Settings</h2>
               
@@ -373,10 +347,8 @@ const Index = () => {
               </div>
             </div>
             
-            {/* ROM Usage Stats */}
             <RomUsageStats romType={romType} segments={segments} />
             
-            {/* Segment Actions */}
             <div className="grid grid-cols-2 gap-4">
               <Button 
                 variant="outline" 
@@ -398,17 +370,14 @@ const Index = () => {
               </Button>
             </div>
             
-            {/* File Dropzone (conditional) */}
             {showDropzone && (
               <div className="animate-scale-in">
                 <FileDropzone onFilesSelected={handleFilesSelected} />
               </div>
             )}
             
-            {/* Blank Space Selector */}
             <BlankSpaceSelector onAddBlankSpace={handleAddBlankSpace} />
             
-            {/* Segment List */}
             <div className="space-y-4">
               <h2 className="font-semibold">ROM Segments {segments.length > 0 && `(${segments.length})`}</h2>
               <SegmentList
@@ -421,7 +390,6 @@ const Index = () => {
             </div>
           </div>
           
-          {/* Right Column - Hex Editor */}
           <div className="lg:col-span-8">
             <div className="p-4 border rounded-md bg-card h-full">
               <h2 className="font-semibold text-lg mb-4">
@@ -444,10 +412,9 @@ const Index = () => {
         </div>
       </main>
       
-      {/* Footer */}
       <footer className="border-t mt-12 py-6 text-center text-sm text-muted-foreground">
         <div className="container">
-          <p>ROM Crafting Toolbox &copy; {new Date().getFullYear()}</p>
+          <p>ROM Creator &copy; {new Date().getFullYear()}</p>
         </div>
       </footer>
     </div>
