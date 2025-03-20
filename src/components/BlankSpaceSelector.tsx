@@ -1,7 +1,5 @@
 
 import React from 'react';
-import LanguageSelector from '@/components/LanguageSelector';
-import { useLanguage } from '@/lib/languageContext';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Button } from '@/components/ui/button';
 import { BLANK_SPACE_SIZES, BlankSpaceSize, FillType } from '@/lib/romUtils';
