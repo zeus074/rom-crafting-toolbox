@@ -4,7 +4,6 @@ import { RomSegment, formatBytes } from '@/lib/romUtils';
 import { Button } from '@/components/ui/button';
 import { ChevronUp, ChevronDown, Trash2, FileIcon, Square } from 'lucide-react';
 import { useLanguage } from '@/lib/languageContext';
-const { t } = useLanguage();
 
 interface SegmentListProps {
   segments: RomSegment[];
@@ -22,6 +21,7 @@ const SegmentList: React.FC<SegmentListProps> = ({
   onMoveSegment,
 }) => {
   if (segments.length === 0) {
+	  const { t } = useLanguage();
     return (
       <div className="p-6 text-center border border-dashed rounded-md bg-secondary/30 text-muted-foreground animate-fade-in">
         <p>{t('no.rom.added')}</p>
