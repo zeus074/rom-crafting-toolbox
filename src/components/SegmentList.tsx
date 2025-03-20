@@ -28,9 +28,24 @@ const SegmentList: React.FC<SegmentListProps> = ({
     );
   }
 
+  // Calculate the memory addresses for each segment
+  const segmentsWithAddresses = segments.map((segment, index) => {
+    const startAddress = segments
+      .slice(0, index)
+      .reduce((total, seg) => total + seg.size, 0);
+    
+    const endAddress = startAddress + segment.size - 1;
+    
+    return {
+      ...segment,
+      startAddress,
+      endAddress
+    };
+  });
+
   return (
     <div className="space-y-3 animate-fade-in">
-      {segments.map((segment, index) => (
+      {segmentsWithAddresses.map((segment, index) => (
         <div 
           key={segment.id}
           className={`rom-item flex items-center ${selectedSegmentId === segment.id ? 'active' : ''}`}
@@ -48,13 +63,18 @@ const SegmentList: React.FC<SegmentListProps> = ({
           {/* Segment info */}
           <div className="flex-1">
             <div className="font-medium">{segment.name}</div>
-            <div className="text-sm text-muted-foreground flex items-center gap-2">
-              <span>{formatBytes(segment.size)}</span>
-              {segment.type === 'blank' && (
-                <span className="px-1.5 py-0.5 bg-secondary rounded-sm text-xs">
-                  Fill: {segment.data[0] === 0 ? '0x00' : '0xFF'}
-                </span>
-              )}
+            <div className="text-sm text-muted-foreground flex flex-col gap-1">
+              <div className="flex items-center gap-2">
+                <span>{formatBytes(segment.size)}</span>
+                {segment.type === 'blank' && (
+                  <span className="px-1.5 py-0.5 bg-secondary rounded-sm text-xs">
+                    Fill: {segment.data[0] === 0 ? '0x00' : '0xFF'}
+                  </span>
+                )}
+              </div>
+              <div className="text-xs font-mono">
+                Addr: 0x{segment.startAddress.toString(16).toUpperCase().padStart(6, '0')} - 0x{segment.endAddress.toString(16).toUpperCase().padStart(6, '0')}
+              </div>
             </div>
           </div>
           
