@@ -23,7 +23,7 @@ const RomSelector: React.FC<RomSelectorProps> = ({ value, onChange }) => {
         <SelectContent>
           {(Object.keys(ROM_SIZES) as RomType[]).map((type) => (
             <SelectItem key={type} value={type} className="flex justify-between">
-              <span>{type}</span>
+              <span>{type}</span>&nbsp;
               <span className="text-muted-foreground text-xs">
                 {(ROM_SIZES[type] / 1024).toLocaleString()} KB
               </span>
