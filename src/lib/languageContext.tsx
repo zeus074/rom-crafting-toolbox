@@ -60,7 +60,7 @@ const translations: Record<Language, Record<string, string>> = {
 	'used': 'Usato',
 	'free': 'Libero',
 	'total': 'Totale',
-	'roms.required': 'ROMs Richieste',
+	'roms.required': 'ROM Richieste',
     'add.rom.files': 'Aggiungi File ROM',
     'export.rom': 'Esporta ROM',
 	'add.blank.space': 'Aggiungi spazio vuoto',
