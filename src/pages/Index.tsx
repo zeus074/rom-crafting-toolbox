@@ -31,9 +31,13 @@ import HexEditor from '@/components/HexEditor';
 import RomUsageStats from '@/components/RomUsageStats';
 import BlankSpaceSelector from '@/components/BlankSpaceSelector';
 import FileDropzone from '@/components/FileDropzone';
+import LanguageSelector from '@/components/LanguageSelector';
+import { useLanguage } from '@/lib/languageContext';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 
 const Index = () => {
+  const { t } = useLanguage();
+  
   const [projectName, setProjectName] = useState<string>('Untitled Project');
   const [romType, setRomType] = useState<RomType>('27C256');
   const [fillType, setFillType] = useState<FillType>(0xFF);
@@ -292,22 +296,23 @@ const Index = () => {
               <h1 className="text-xl font-semibold tracking-tight">
                 ROM Creator <a href="https://retrofixer.it" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">by Retrofixer</a>
               </h1>
-              <p className="text-sm text-muted-foreground">Create and manage ROM binary files</p>
+              <p className="text-sm text-muted-foreground">{t('app.description')}</p>
             </div>
           </div>
           
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-3">
+            <LanguageSelector />
             <Button variant="outline" size="sm" onClick={handleSelectProjectFile}>
               <FolderOpen size={16} className="mr-2" />
-              Load
+              {t('load')}
             </Button>
             <Button variant="outline" size="sm" onClick={handleSaveProject}>
               <Save size={16} className="mr-2" />
-              Save
+              {t('save')}
             </Button>
             <Button variant="outline" size="sm" onClick={handleResetProject}>
               <Trash2 size={16} className="mr-2" />
-              Reset
+              {t('reset')}
             </Button>
           </div>
         </div>
@@ -317,15 +322,15 @@ const Index = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
           <div className="lg:col-span-4 space-y-6">
             <div className="p-4 border rounded-md space-y-4 bg-card">
-              <h2 className="font-semibold text-lg">Project Settings</h2>
+              <h2 className="font-semibold text-lg">{t('project.settings')}</h2>
               
               <div className="space-y-2">
-                <label className="text-sm font-medium text-muted-foreground">Project Name</label>
+                <label className="text-sm font-medium text-muted-foreground">{t('project.name')}</label>
                 <Input
                   type="text"
                   value={projectName}
                   onChange={(e) => setProjectName(e.target.value)}
-                  placeholder="Enter project name"
+                  placeholder={t('project.name.placeholder')}
                 />
               </div>
               
@@ -333,14 +338,14 @@ const Index = () => {
                 <RomSelector value={romType} onChange={handleRomTypeChange} />
                 
                 <div className="space-y-2">
-                  <label className="text-sm font-medium text-muted-foreground">Fill Pattern</label>
+                  <label className="text-sm font-medium text-muted-foreground">{t('fill.pattern')}</label>
                   <Select value={String(fillType)} onValueChange={handleFillTypeChange}>
                     <SelectTrigger>
-                      <SelectValue placeholder="Fill pattern" />
+                      <SelectValue placeholder={t('fill.pattern')} />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="0">0x00 (Zeros)</SelectItem>
-                      <SelectItem value="255">0xFF (Ones)</SelectItem>
+                      <SelectItem value="0">0x00 ({t('zeros')})</SelectItem>
+                      <SelectItem value="255">0xFF ({t('ones')})</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
@@ -356,7 +361,7 @@ const Index = () => {
                 onClick={() => setShowDropzone(prev => !prev)}
               >
                 <FilePlus size={16} className="mr-2" />
-                Add ROM Files
+                {t('add.rom.files')}
               </Button>
               
               <Button 
@@ -366,7 +371,7 @@ const Index = () => {
                 disabled={segments.length === 0}
               >
                 <Download size={16} className="mr-2" />
-                Export ROM
+                {t('export.rom')}
               </Button>
             </div>
             
@@ -379,7 +384,7 @@ const Index = () => {
             <BlankSpaceSelector onAddBlankSpace={handleAddBlankSpace} />
             
             <div className="space-y-4">
-              <h2 className="font-semibold">ROM Segments {segments.length > 0 && `(${segments.length})`}</h2>
+              <h2 className="font-semibold">{t('rom.segments')} {segments.length > 0 && `(${segments.length})`}</h2>
               <SegmentList
                 segments={segments}
                 selectedSegmentId={selectedSegmentId}
@@ -395,7 +400,7 @@ const Index = () => {
               <h2 className="font-semibold text-lg mb-4">
                 {selectedSegment 
                   ? `Viewing: ${selectedSegment.name}`
-                  : 'ROM Content Viewer'
+                  : t('rom.content.viewer')
                 }
               </h2>
               
@@ -403,8 +408,8 @@ const Index = () => {
                 <HexEditor segment={selectedSegment} />
               ) : (
                 <div className="flex flex-col items-center justify-center h-64 text-muted-foreground">
-                  <p className="text-lg mb-2">No segment selected</p>
-                  <p>Select a segment from the list to view its contents</p>
+                  <p className="text-lg mb-2">{t('no.segment.selected')}</p>
+                  <p>{t('select.segment')}</p>
                 </div>
               )}
             </div>

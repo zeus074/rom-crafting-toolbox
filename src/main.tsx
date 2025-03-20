@@ -1,14 +1,22 @@
 
-import { createRoot } from 'react-dom/client'
+import React from 'react'
+import ReactDOM from 'react-dom/client'
 import App from './App.tsx'
 import './index.css'
+import { Toaster } from 'sonner'
+import { LanguageProvider } from './lib/languageContext'
 
-// Assicuriamoci che l'elemento root esista
-const rootElement = document.getElementById("root");
+const rootElement = document.getElementById('root');
 
-if (!rootElement) {
-  console.error("Failed to find the root element");
-  document.body.innerHTML = '<div id="root"><h1>Errore di inizializzazione dell\'applicazione</h1><p>Controlla la console per i dettagli.</p></div>';
+if (rootElement) {
+  ReactDOM.createRoot(rootElement).render(
+    <React.StrictMode>
+      <LanguageProvider>
+        <Toaster position="top-right" richColors />
+        <App />
+      </LanguageProvider>
+    </React.StrictMode>,
+  )
 } else {
-  createRoot(rootElement).render(<App />);
+  console.error("Root element not found");
 }
