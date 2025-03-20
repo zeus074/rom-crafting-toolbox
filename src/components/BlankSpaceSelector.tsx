@@ -20,7 +20,7 @@ const BlankSpaceSelector: React.FC<BlankSpaceSelectorProps> = ({ onAddBlankSpace
 
   return (
     <div className="space-y-4 p-4 border rounded-md bg-card">
-      <h3 className="font-medium">t('add.blank.space')</h3>
+      <h3 className="font-medium">{t('add.blank.space')}</h3>
       
       <div className="space-y-2">
         <label className="text-sm font-medium text-muted-foreground">Size</label>
