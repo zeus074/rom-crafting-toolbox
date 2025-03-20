@@ -3,6 +3,8 @@ import React from 'react';
 import { RomSegment, formatBytes } from '@/lib/romUtils';
 import { Button } from '@/components/ui/button';
 import { ChevronUp, ChevronDown, Trash2, FileIcon, Square } from 'lucide-react';
+import { useLanguage } from '@/lib/languageContext';
+const { t } = useLanguage();
 
 interface SegmentListProps {
   segments: RomSegment[];
@@ -22,8 +24,8 @@ const SegmentList: React.FC<SegmentListProps> = ({
   if (segments.length === 0) {
     return (
       <div className="p-6 text-center border border-dashed rounded-md bg-secondary/30 text-muted-foreground animate-fade-in">
-        <p>No ROM segments added yet</p>
-        <p className="text-sm mt-2">Use the buttons above to add ROM files or blank space</p>
+        <p>{t('no.rom.added')}</p>
+        <p className="text-sm mt-2">{t('no.rom.added.descri')}</p>
       </div>
     );
   }
