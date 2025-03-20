@@ -58,7 +58,7 @@ const BlankSpaceSelector: React.FC<BlankSpaceSelectorProps> = ({ onAddBlankSpace
         onClick={handleAddBlankSpace}
       >
         <PlusCircle size={16} className="mr-2" />
-        Add Blank Space
+        {t('add.blank.space')}
       </Button>
     </div>
   );
