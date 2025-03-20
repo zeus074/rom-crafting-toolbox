@@ -26,7 +26,7 @@ const BlankSpaceSelector: React.FC<BlankSpaceSelectorProps> = ({ onAddBlankSpace
       <h3 className="font-medium">{t('add.blank.space')}</h3>
       
       <div className="space-y-2">
-        <label className="text-sm font-medium text-muted-foreground">Size</label>
+        <label className="text-sm font-medium text-muted-foreground">{t('size')}</label>
         <Select value={selectedSize} onValueChange={(value) => setSelectedSize(value as BlankSpaceSize)}>
           <SelectTrigger className="w-full">
             <SelectValue placeholder={t('select.size')} />
@@ -40,7 +40,7 @@ const BlankSpaceSelector: React.FC<BlankSpaceSelectorProps> = ({ onAddBlankSpace
       </div>
       
       <div className="space-y-2">
-        <label className="text-sm font-medium text-muted-foreground">Fill Pattern</label>
+        <label className="text-sm font-medium text-muted-foreground">{t('fill.pattern')}</label>
         <Select value={String(fillType)} onValueChange={(value) => setFillType(Number(value) as FillType)}>
           <SelectTrigger className="w-full">
             <SelectValue placeholder={t('fill.pattern')} />
