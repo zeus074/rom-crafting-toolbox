@@ -2,6 +2,7 @@
 import React from 'react';
 import { RomType, ROM_SIZES, RomSegment, getTotalSize, formatBytes } from '@/lib/romUtils';
 import { Progress } from '@/components/ui/progress';
+import { useLanguage } from '@/lib/languageContext';
 
 interface RomUsageStatsProps {
   romType: RomType;
@@ -14,6 +15,7 @@ const RomUsageStats: React.FC<RomUsageStatsProps> = ({ romType, segments }) => {
   const usedPercentage = Math.min(100, (usedSize / romSize) * 100);
   const freeSize = Math.max(0, romSize - usedSize);
   const requiredRoms = Math.ceil(usedSize / romSize);
+  const { t } = useLanguage();
   
   // Determine status color
   let statusColor = 'text-green-500';
@@ -32,11 +34,11 @@ const RomUsageStats: React.FC<RomUsageStatsProps> = ({ romType, segments }) => {
   
   return (
     <div className="p-4 border rounded-md space-y-3 bg-card animate-fade-in">
-      <h3 className="font-medium">ROM Usage</h3>
+      <h3 className="font-medium">{t('rom.usage')}</h3>
       
       <div className="space-y-1">
         <div className="flex justify-between items-center text-sm">
-          <span className="text-muted-foreground">Usage</span>
+          <span className="text-muted-foreground">{t('usage')}</span>
           <span className={statusColor}>{usedPercentage.toFixed(1)}%</span>
         </div>
         <Progress value={usedPercentage} className="h-2" indicatorClassName={bgColor} />
@@ -44,19 +46,19 @@ const RomUsageStats: React.FC<RomUsageStatsProps> = ({ romType, segments }) => {
       
       <div className="grid grid-cols-2 gap-2 text-sm">
         <div>
-          <div className="text-muted-foreground">Used</div>
+          <div className="text-muted-foreground">{t('used')}</div>
           <div className="font-medium">{formatBytes(usedSize)}</div>
         </div>
         <div>
-          <div className="text-muted-foreground">Free</div>
+          <div className="text-muted-foreground">{t('free')}</div>
           <div className="font-medium">{formatBytes(freeSize)}</div>
         </div>
         <div>
-          <div className="text-muted-foreground">Total</div>
+          <div className="text-muted-foreground">{t('total')}</div>
           <div className="font-medium">{formatBytes(romSize)}</div>
         </div>
         <div>
-          <div className="text-muted-foreground">ROMs Required</div>
+          <div className="text-muted-foreground">{t('roms.required')}</div>
           <div className={`font-medium ${requiredRoms > 1 ? 'text-amber-500' : ''}`}>
             {requiredRoms}
           </div>
