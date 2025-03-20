@@ -1,9 +1,12 @@
 
 import React from 'react';
+import { useLanguage } from '@/lib/languageContext';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Button } from '@/components/ui/button';
 import { BLANK_SPACE_SIZES, BlankSpaceSize, FillType } from '@/lib/romUtils';
 import { PlusCircle } from 'lucide-react';
+
+const { t } = useLanguage();
 
 interface BlankSpaceSelectorProps {
   onAddBlankSpace: (size: number, fillType: FillType) => void;
