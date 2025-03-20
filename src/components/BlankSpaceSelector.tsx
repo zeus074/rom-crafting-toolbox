@@ -46,8 +46,8 @@ const BlankSpaceSelector: React.FC<BlankSpaceSelectorProps> = ({ onAddBlankSpace
             <SelectValue placeholder={t('fill.pattern')} />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="0">0x00 (Zeros)</SelectItem>
-            <SelectItem value="255">0xFF (Ones)</SelectItem>
+            <SelectItem value="0">0x00 ({t('zeros')})</SelectItem>
+            <SelectItem value="255">0xFF ({t('ones')})</SelectItem>
           </SelectContent>
         </Select>
       </div>
