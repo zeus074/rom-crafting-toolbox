@@ -6,8 +6,6 @@ import { Button } from '@/components/ui/button';
 import { BLANK_SPACE_SIZES, BlankSpaceSize, FillType } from '@/lib/romUtils';
 import { PlusCircle } from 'lucide-react';
 
-const { t } = useLanguage();
-
 interface BlankSpaceSelectorProps {
   onAddBlankSpace: (size: number, fillType: FillType) => void;
 }
@@ -22,6 +20,7 @@ const BlankSpaceSelector: React.FC<BlankSpaceSelectorProps> = ({ onAddBlankSpace
   };
 
   return (
+  const { t } = useLanguage();
     <div className="space-y-4 p-4 border rounded-md bg-card">
       <h3 className="font-medium">{t('add.blank.space')}</h3>
       
