@@ -4,6 +4,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Button } from '@/components/ui/button';
 import { BLANK_SPACE_SIZES, BlankSpaceSize, FillType } from '@/lib/romUtils';
 import { PlusCircle } from 'lucide-react';
+import LanguageSelector from '@/components/LanguageSelector';
 import { useLanguage } from '@/lib/languageContext';
 
 interface BlankSpaceSelectorProps {
