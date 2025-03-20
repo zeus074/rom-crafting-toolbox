@@ -11,6 +11,7 @@ interface BlankSpaceSelectorProps {
 }
 
 const BlankSpaceSelector: React.FC<BlankSpaceSelectorProps> = ({ onAddBlankSpace }) => {
+	const { t } = useLanguage();
   const [selectedSize, setSelectedSize] = React.useState<BlankSpaceSize>('4KB');
   const [fillType, setFillType] = React.useState<FillType>(0x00);
 
@@ -20,7 +21,7 @@ const BlankSpaceSelector: React.FC<BlankSpaceSelectorProps> = ({ onAddBlankSpace
   };
 
   return (
-  const { t } = useLanguage();
+  
     <div className="space-y-4 p-4 border rounded-md bg-card">
       <h3 className="font-medium">{t('add.blank.space')}</h3>
       
