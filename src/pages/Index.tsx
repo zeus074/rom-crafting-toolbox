@@ -87,7 +87,7 @@ const Index = () => {
           : `ROM file "${files[0].name}" added`
       );
     } catch (error) {
-      console.error({t('err.loading.rom')}, error);
+      console.error('Error loading ROM files:', error);
       toast.error({t('failed.load.rom')});
     }
   };
