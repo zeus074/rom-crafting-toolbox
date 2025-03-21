@@ -87,8 +87,8 @@ const Index = () => {
           : `ROM file "${files[0].name}" added`
       );
     } catch (error) {
-      console.error('Error loading ROM files:', error);
-      toast.error({t('failed.load.rom')});
+      console.error(t('err.loading.rom'), error);
+      toast.error(t('failed.load.rom'));
     }
   };
   
@@ -121,7 +121,7 @@ const Index = () => {
       setSelectedSegmentId(segments.length > 1 ? segments[0].id : null);
     }
     
-    toast.success({t('segment.removed')});
+    toast.success(t('segment.removed'));
   };
   
   const handleMoveSegment = (id: string, direction: 'up' | 'down') => {
@@ -162,7 +162,7 @@ const Index = () => {
       const romCount = Math.ceil(totalData.length / romSize);
       
       if (romCount === 0) {
-        toast.error({t('no.data.export')});
+        toast.error(t('no.data.export'));
         return;
       }
       
@@ -172,7 +172,7 @@ const Index = () => {
         romFile.set(totalData);
         
         downloadFile(romFile, `${projectName.replace(/\s+/g, '_')}.bin`);
-        toast.success({t('export.success')});
+        toast.success(t('export.success'));
       } else {
         for (let i = 0; i < romCount; i++) {
           const romFile = new Uint8Array(romSize);
@@ -193,8 +193,8 @@ const Index = () => {
         toast.success(`Exported ${romCount} ROM files successfully`);
       }
     } catch (error) {
-      console.error({t('error.export.rom')}, error);
-      toast.error({t('failed.export.rom')});
+      console.error(t('error.export.rom'), error);
+      toast.error(t('failed.export.rom'));
     }
   };
   
@@ -219,10 +219,10 @@ const Index = () => {
       document.body.removeChild(a);
       URL.revokeObjectURL(url);
       
-      toast.success({t('project.saved')});
+      toast.success(t('project.saved'));
     } catch (error) {
-      console.error({t('error.project.save')}, error);
-      toast.error({t('failed.project.save')});
+      console.error(t('error.project.save'), error);
+      toast.error(t('failed.project.save'));
     }
   };
   
@@ -270,7 +270,7 @@ const Index = () => {
       return;
     }
     
-    const confirmed = window.confirm({t('delete.confirm')});
+    const confirmed = window.confirm(t('delete.confirm'));
     
     if (confirmed) {
       setProjectName('Untitled Project');
