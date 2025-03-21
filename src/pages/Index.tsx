@@ -98,7 +98,7 @@ const Index = () => {
     
     const newSegment: RomSegment = {
       id: uuidv4(),
-      name: `Blank Space (${sizeLabel})`,
+      name: `${t('blank.space')} (${sizeLabel})`,
       type: 'blank',
       size,
       data: blankData
@@ -107,7 +107,7 @@ const Index = () => {
     setSegments(prev => [...prev, newSegment]);
     setSelectedSegmentId(newSegment.id);
     
-    toast.success(`${t('added')} ${sizeLabel} ${t('blank.space')} ${fillPattern ? '0xFF' : '0x00'}`);
+    toast.success(`${t('added')} ${sizeLabel} ${t('blank.space.filled')} ${fillPattern ? '0xFF' : '0x00'}`);
   };
   
   const handleSelectSegment = (id: string) => {

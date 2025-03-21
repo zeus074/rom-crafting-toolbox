@@ -57,7 +57,8 @@ const translations: Record<Language, Record<string, string>> = {
 	'error.project.load': 'Error loading project:',
     'failed.project.load': 'Failed to load project',
 	'added': 'Added',
-	'blank.space': 'blank space filled with',
+	'blank.space': 'Blank Space',
+	'blank.space.filled': 'blank space filled with',
     'delete.confirm': 'Are you sure you want to reset the project? All unsaved changes will be lost.'
   },
   it: {
@@ -102,7 +103,8 @@ const translations: Record<Language, Record<string, string>> = {
     'error.project.save': 'Errore nel salvataggio progetto:',
     'failed.project.save': 'impossibile salvare il progetto',
 	'added': 'Aggiunto',
-	'blank.space': 'di spazio riempito con',
+	'blank.space': 'Spazio Vuoto',
+	'blank.space.filled': 'di spazio riempito con',
     'delete.confirm': 'Sicuro di voler resettare il progetto? Le modifiche non salvate verranno perse.'
   }
 };
