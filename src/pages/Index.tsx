@@ -270,7 +270,7 @@ const Index = () => {
       return;
     }
     
-    const confirmed = window.confirm('Are you sure you want to reset the project? All unsaved changes will be lost.');
+    const confirmed = window.confirm({t('delete.confirm')});
     
     if (confirmed) {
       setProjectName('Untitled Project');

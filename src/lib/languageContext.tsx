@@ -54,7 +54,7 @@ const translations: Record<Language, Record<string, string>> = {
 	'project.saved': 'Project saved successfully',
 	'error.project.save': 'Error saving project:',
 	'failed.project.save': 'Failed to save project',
-  },
+	'delete.confirm': 'Are you sure you want to reset the project? All unsaved changes will be lost.',
   it: {
     'app.title': 'ROM Creator',
     'app.description': 'Crea e gestisci file immagine delle ROM',
@@ -96,6 +96,7 @@ const translations: Record<Language, Record<string, string>> = {
 	'project.saved': 'Progetto salvato',
 	'error.project.save': 'Errore nel salvataggio progetto:',
 	'failed.project.save': 'impossibile salvare il progetto',
+	'delete.confirm': 'Sicuro di voler resettare il progetto? Le modifiche non salvate verranno perse.',
   }
 };
 
