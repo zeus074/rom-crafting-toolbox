@@ -107,7 +107,7 @@ const Index = () => {
     setSegments(prev => [...prev, newSegment]);
     setSelectedSegmentId(newSegment.id);
     
-    toast.success(t('added') & ` ${sizeLabel} blank space filled with ${fillPattern ? '0xFF' : '0x00'}`);
+    toast.success(`${t('added')} ${sizeLabel} blank space filled with ${fillPattern ? '0xFF' : '0x00'}`);
   };
   
   const handleSelectSegment = (id: string) => {
