@@ -87,8 +87,8 @@ const Index = () => {
           : `ROM file "${files[0].name}" added`
       );
     } catch (error) {
-      console.error('Error loading ROM files:', error);
-      toast.error('Failed to load ROM files');
+      console.error({t('err.loading.rom')}, error);
+      toast.error({t('failed.load.rom')});
     }
   };
   
@@ -121,7 +121,7 @@ const Index = () => {
       setSelectedSegmentId(segments.length > 1 ? segments[0].id : null);
     }
     
-    toast.success('Segment removed');
+    toast.success({t('segment.removed')});
   };
   
   const handleMoveSegment = (id: string, direction: 'up' | 'down') => {
@@ -162,7 +162,7 @@ const Index = () => {
       const romCount = Math.ceil(totalData.length / romSize);
       
       if (romCount === 0) {
-        toast.error('No data to export');
+        toast.error({t('segment.removed')});
         return;
       }
       

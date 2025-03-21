@@ -44,6 +44,10 @@ const translations: Record<Language, Record<string, string>> = {
     'save': 'Save',
     'reset': 'Reset',
     'language': 'Language',
+	'err.loading.rom': 'Error loading ROM files:',
+	'failed.load.rom': 'Failed to load ROM files',
+	'segment.removed': 'Segment removed',
+	'no.data.export': 'No data to export',
   },
   it: {
     'app.title': 'ROM Creator',
@@ -76,6 +80,10 @@ const translations: Record<Language, Record<string, string>> = {
     'save': 'Salva',
     'reset': 'Reimposta',
     'language': 'Lingua',
+	'err.loading.rom': 'Errore caricamento file ROM:',
+	'failed.load.rom': 'Impossibile caricare i file ROM',
+	'segment.removed': 'ROM rimossa',
+	'no.data.export': 'Nessun dato da esportare',
   }
 };
 
