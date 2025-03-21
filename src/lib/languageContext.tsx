@@ -48,6 +48,12 @@ const translations: Record<Language, Record<string, string>> = {
 	'failed.load.rom': 'Failed to load ROM files',
 	'segment.removed': 'Segment removed',
 	'no.data.export': 'No data to export',
+	'export.success': 'ROM file exported successfully',
+	'error.export.rom': 'Error exporting ROM:',
+    'failed.export.rom': 'Failed to export ROM files',
+	'project.saved': 'Project saved successfully',
+	'error.project.save': 'Error saving project:',
+	'failed.project.save': 'Failed to save project',
   },
   it: {
     'app.title': 'ROM Creator',
@@ -84,6 +90,12 @@ const translations: Record<Language, Record<string, string>> = {
 	'failed.load.rom': 'Impossibile caricare i file ROM',
 	'segment.removed': 'ROM rimossa',
 	'no.data.export': 'Nessun dato da esportare',
+	'export.success': 'ROM esportata con successo',
+	'error.export.rom': 'Errore esporazione ROM:',
+    'failed.export.rom': 'Impossibile esportare la ROM',
+	'project.saved': 'Progetto salvato',
+	'error.project.save': 'Errore nel salvataggio progetto:',
+	'failed.project.save': 'impossibile salvare il progetto',
   }
 };
 

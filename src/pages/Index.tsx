@@ -162,7 +162,7 @@ const Index = () => {
       const romCount = Math.ceil(totalData.length / romSize);
       
       if (romCount === 0) {
-        toast.error({t('segment.removed')});
+        toast.error({t('no.data.export')});
         return;
       }
       
@@ -172,7 +172,7 @@ const Index = () => {
         romFile.set(totalData);
         
         downloadFile(romFile, `${projectName.replace(/\s+/g, '_')}.bin`);
-        toast.success('ROM file exported successfully');
+        toast.success({t('export.success')});
       } else {
         for (let i = 0; i < romCount; i++) {
           const romFile = new Uint8Array(romSize);
@@ -193,8 +193,8 @@ const Index = () => {
         toast.success(`Exported ${romCount} ROM files successfully`);
       }
     } catch (error) {
-      console.error('Error exporting ROM:', error);
-      toast.error('Failed to export ROM files');
+      console.error({t('error.export.rom')}, error);
+      toast.error({t('failed.export.rom')});
     }
   };
   
@@ -219,10 +219,10 @@ const Index = () => {
       document.body.removeChild(a);
       URL.revokeObjectURL(url);
       
-      toast.success('Project saved successfully');
+      toast.success({t('project.saved')});
     } catch (error) {
-      console.error('Error saving project:', error);
-      toast.error('Failed to save project');
+      console.error({t('error.project.save')}, error);
+      toast.error({t('failed.project.save')});
     }
   };
   
