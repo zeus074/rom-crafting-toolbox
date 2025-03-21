@@ -54,6 +54,9 @@ const translations: Record<Language, Record<string, string>> = {
     'project.saved': 'Project saved successfully',
     'error.project.save': 'Error saving project:',
     'failed.project.save': 'Failed to save project',
+	'error.project.load': 'Error loading project:',
+    'failed.project.load': 'Failed to load project',
+	'added': 'Added',
     'delete.confirm': 'Are you sure you want to reset the project? All unsaved changes will be lost.'
   },
   it: {
@@ -97,6 +100,7 @@ const translations: Record<Language, Record<string, string>> = {
     'project.saved': 'Progetto salvato',
     'error.project.save': 'Errore nel salvataggio progetto:',
     'failed.project.save': 'impossibile salvare il progetto',
+	'added': 'Aggiunto',
     'delete.confirm': 'Sicuro di voler resettare il progetto? Le modifiche non salvate verranno perse.'
   }
 };

@@ -107,7 +107,7 @@ const Index = () => {
     setSegments(prev => [...prev, newSegment]);
     setSelectedSegmentId(newSegment.id);
     
-    toast.success(`Added ${sizeLabel} blank space filled with ${fillPattern ? '0xFF' : '0x00'}`);
+    toast.success(`{t('added')} ${sizeLabel} blank space filled with ${fillPattern ? '0xFF' : '0x00'}`);
   };
   
   const handleSelectSegment = (id: string) => {
@@ -244,8 +244,8 @@ const Index = () => {
       
       toast.success(`Project "${project.name}" loaded successfully`);
     } catch (error) {
-      console.error('Error loading project:', error);
-      toast.error('Failed to load project');
+      console.error(t('error.project.load'), error);
+      toast.error(t('failed.project.load'));
     }
   }, []);
   
