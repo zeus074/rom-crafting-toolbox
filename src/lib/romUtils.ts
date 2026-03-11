@@ -10,7 +10,8 @@ export const ROM_SIZES = {
   '27C010': 128 * 1024,     // 128KB
   '27C020': 256 * 1024,     // 256KB
   '27C040': 512 * 1024,     // 512KB
-  '27C800': 1024 * 1024     // 1MB
+  '27C800': 1024 * 1024,    // 1MB
+  '27C160': 2048 * 1024     // 2MB
 };
 
 export type RomType = keyof typeof ROM_SIZES;
